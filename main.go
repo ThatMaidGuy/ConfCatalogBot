@@ -95,7 +95,7 @@ func main() {
 			ReplyMarkup: telegram.NewKeyboard().NewGrid(3, 1,
 				telegram.Button.Data("🔎 Искать конфы", "search"),
 				telegram.Button.Data("⚙️ Мои конфы", "admin"),
-				telegram.Button.URL("♿️ Разработчик бота ♿️", "https://t.me/just_avg_bots"),
+				telegram.Button.URL("♿️ Разработчик бота ♿️", "https://t.me/conf_catalog"),
 			).Build(),
 		})
 		return nil
