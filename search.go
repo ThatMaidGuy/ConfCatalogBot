@@ -78,7 +78,7 @@ func search_by_cats(query *telegram.CallbackQuery) error {
 		res := Db.QueryRow("SELECT count(*) FROM confs WHERE catalog_id = ?", catid)
 		res.Scan(&count)
 
-		limit_pid := int(math.Ceil(float64(count) / float64(PostLimit)))
+		limit_pid := int(math.Ceil(float64(count)/float64(PostLimit))) - 1
 		var paginator []telegram.KeyboardButton
 		if limit_pid > 0 {
 			if pid > 0 {
