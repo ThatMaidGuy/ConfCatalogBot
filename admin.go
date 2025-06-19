@@ -40,7 +40,7 @@ func admin_handlers(client *telegram.Client) {
 }
 
 func admin_conf_add(query *telegram.CallbackQuery) {
-	query.Edit("Чтобы добавить конфу в наш каталог, вам необходимо добавить нашего бота как админа в ваш канал. Важно - вы должны быть владельцем канала.", &telegram.SendOptions{
+	query.Edit("Чтобы добавить конфу в наш каталог, вам необходимо добавить нашего бота в ваш канал. Из прав на данный момент достаточны лишь права \"Добавление подписчиков\"", &telegram.SendOptions{
 		ReplyMarkup: telegram.NewKeyboard().NewGrid(1, 1,
 			telegram.Button.Data("↪️ Обратно", "start"),
 		).Build(),
