@@ -1,0 +1,4 @@
+bot_token = "" # Токен бота получает у @BotFather
+app_id = 0     # Это значение
+app_hash = "0" # И это, получаем тут: https://my.telegram.org/apps
+db_name = "<ИМЯ_ПОЛЬЗОВАТЕЛЯ_БД>:<ПАРОЛЬ_ПОЛЬЗОВАТЕЛЯ_БД>@tcp(<АЙПИ_БД>)/<ИМЯ_БД>?charset=utf8mb4&parseTime=True&loc=Local"
