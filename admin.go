@@ -261,7 +261,7 @@ func admin_conf_list(query *telegram.CallbackQuery) {
 
 	query.Edit("Ваши конфы", &telegram.SendOptions{
 		ReplyMarkup: telegram.NewKeyboard().
-			NewGrid(3, 5, buttons...).
+			NewGrid(10, 1, buttons...).
 			NewGrid(1, 1,
 				telegram.Button.Data("↪️ Обратно", "admin"),
 			).Build(),

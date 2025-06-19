@@ -107,7 +107,7 @@ func search_by_cats(query *telegram.CallbackQuery) error {
 
 		query.Edit("📌 Выберите конфу", &telegram.SendOptions{
 			ReplyMarkup: telegram.NewKeyboard().
-				NewGrid(1, 5, buttons...).
+				NewGrid(5, 1, buttons...).
 				NewGrid(2, 1, paginator...).
 				NewGrid(1, 1,
 					telegram.Button.Data("↪️ Обратно", "search"),
@@ -196,7 +196,7 @@ func get_by_text(text string, pid int) *telegram.ReplyInlineMarkup {
 	}
 
 	return telegram.NewKeyboard().
-		NewGrid(1, 5, buttons...).
+		NewGrid(5, 1, buttons...).
 		NewGrid(2, 1, paginator...).
 		NewGrid(1, 1,
 			telegram.Button.Data("↪️ Обратно", "search"),
