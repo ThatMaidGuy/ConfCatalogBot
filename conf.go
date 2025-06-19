@@ -100,7 +100,7 @@ func has_emote(what string, conf *ConfInfo, user_id int64) bool {
 }
 
 func conf_like(query *telegram.CallbackQuery, conf *ConfInfo) {
-	if has_emote("like", conf, query.SenderID) {
+	if has_emote("likes", conf, query.SenderID) {
 		InsertIntoDB(Db, "DELETE FROM likes WHERE user_id = ? AND conf_id = ?", query.SenderID, conf.ID)
 	} else {
 		InsertIntoDB(Db, "INSERT INTO likes (user_id, conf_id) VALUES (?, ?)", query.SenderID, conf.ID)
@@ -109,7 +109,7 @@ func conf_like(query *telegram.CallbackQuery, conf *ConfInfo) {
 }
 
 func conf_dislike(query *telegram.CallbackQuery, conf *ConfInfo) {
-	if has_emote("dislike", conf, query.SenderID) {
+	if has_emote("dislikes", conf, query.SenderID) {
 		InsertIntoDB(Db, "DELETE FROM dislikes WHERE user_id = ? AND conf_id = ?", query.SenderID, conf.ID)
 	} else {
 		InsertIntoDB(Db, "INSERT INTO dislikes (user_id, conf_id) VALUES (?, ?)", query.SenderID, conf.ID)
