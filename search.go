@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"math"
 	"math/rand"
 	"strconv"
@@ -117,7 +118,12 @@ func search_by_cats(query *telegram.CallbackQuery) error {
 		return nil
 	}
 
-	cats, err := Db.Query("SELECT * FROM catalogs")
+	cats, err := Db.Query(`
+		SELECT id, name, (
+			SELECT COUNT(*) FROM confs
+			WHERE confs.catalog_id = catalogs.id
+		) AS c FROM catalogs
+	`)
 	if err != nil {
 		query.Edit("Ошибка")
 		return err
@@ -128,8 +134,10 @@ func search_by_cats(query *telegram.CallbackQuery) error {
 	for cats.Next() {
 		id := 0
 		title := ""
-		cats.Scan(&id, &title)
-		buttons = append(buttons, telegram.Button.Data(title, "search|cat|"+strconv.Itoa(id)+"|0"))
+		count := 0
+
+		cats.Scan(&id, &title, &count)
+		buttons = append(buttons, telegram.Button.Data(fmt.Sprintf("%s (%v)", title, count), "search|cat|"+strconv.Itoa(id)+"|0"))
 	}
 
 	query.Edit("📚 Категории", &telegram.SendOptions{
