@@ -6,6 +6,7 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/amarnathcjd/gogram/telegram"
 )
@@ -119,7 +120,8 @@ func conf_dislike(query *telegram.CallbackQuery, conf *ConfInfo) {
 
 func conf_enter(client *telegram.Client, query *telegram.CallbackQuery, conf *ConfInfo) {
 	invite, err := client.GetChatInviteLink(conf.ChannelID, &telegram.InviteLinkOptions{
-		Limit: 1,
+		Expire: int32(time.Now().Unix()) + 300,
+		Limit:  1,
 	})
 	if err != nil {
 		log.Panicln(err)
